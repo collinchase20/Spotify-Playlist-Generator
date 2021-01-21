@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if not user %}
+
+  <div class="container">
+    <div class="mt-1" align="center">
+      <h1>Profile</h1>
+    </div>
+    <p class="lead" align="center">You need to login to Spotify to see this page</p>
+
+    <div class="center" id="loginDiv">
+    <a type="button" class="btn btn-default" href="/auth" style="border-color: black; background-color: #6AE368;"><img src="{{url_for('static', filename='imgs/spotifyBlack.png')}}" id="buttonLogo">Login to Spotify</a>
+    </div>
+
+  </div>
+
+{% else %}
+
+	<div class="container">
+
+      <div class="username" align="center">
+        <h1> Hi {{ user.display_name }} </h1>
+      </div>
+
+    <hr class="half-rule" align="center"/>
+
+	  <div class="row">
+
+
+        <div class="column" align="center">
+        <h3> Your Top Artists: </h3>
+        <hr class="half-rule"/>
+          <div class="container vertical-scrollable" align='left' style="height: 400px; overflow-y: scroll; border: 1px solid black;">
+        {% for artist in top_artists %}
+        <div class='row' style="margin-top: 5%;">
+          <a href="{{ artist.external_urls.spotify }}">
+            <div class='col-sm-8'>
+              <span>{{ artist.name }} </span>
+            </div>
+            <div class='col-sm-4'>
+              {% if artist.images %}
+              <img src="{{artist.images[0].url}}" alt="{{artist.name}}" class="img-playlist">
+              {% else %}
+              <img src="http://bit.ly/2nXRRfX" class="img-search">
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+          </div>
+        </div>
+
+
+
+        <div class="column" align="center">
+        <h3> Your Top Songs: </h3>
+        <hr class="half-rule"/>
+          <div class="container vertical-scrollable" align='left' style="height: 400px; overflow-y: scroll; border: 1px solid black;">
+        {% for track in top_tracks %}
+        <div class='row' style="margin-top: 5%;">
+          <a href="{{ track.external_urls.spotify }}">
+            <div class='col-sm-8'>
+              <span>{{ track.name }} </span>
+            </div>
+            <div class='col-sm-4'>
+              {% if track.album.images %}
+              <img src="{{track.album.images[0].url}}" alt="{{track.name}}" class="img-playlist">
+              {% else %}
+              <img src="http://bit.ly/2nXRRfX" class="img-search">
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+          </div>
+        </div>
+
+        <div class="column" align="center">
+        <h3> Your Playlists: </h3>
+        <hr class="half-rule"/>
+        <div class="container vertical-scrollable" align='left' style="height: 400px; overflow-y: scroll; border: 1px solid black;">
+        {% for play in playlists %}
+        <div class='row' style="margin-top: 5%;">
+          <a href="{{ play.external_urls.spotify }}">
+            <div class='col-sm-8'>
+              <span>{{ play.name }} </span>
+            </div>
+            <div class='col-sm-4'>
+              {% if play.images %}
+              <img src="{{play.images[0].url}}" alt="{{play.name}}" class="img-playlist">
+              {% else %}
+              <img src="http://bit.ly/2nXRRfX" class="img-search">
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+{% endif %}
+
+{% endblock %}

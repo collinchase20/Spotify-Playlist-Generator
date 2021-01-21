@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if not user %}
+
+  <div class="container">
+
+    <div class="mt-1" align="center">
+      <h1>Split your liked songs into playlists!</h1>
+    </div>
+
+    <p class="lead" align="center">You need to login to Spotify to use this page</p>
+
+    <div class="center" id="loginDiv">
+      <a type="button" class="btn btn-default" href="/auth" style="border-color: black; background-color: #6AE368;"><img src="{{url_for('static', filename='imgs/spotifyBlack.png')}}" id="buttonLogo">Login to Spotify</a>
+    </div>
+
+  </div>
+
+{% else %}
+
+  <div class="container">
+
+    <div class="mt-1" align="center">
+      <h1>Split your liked songs into playlists based on moods</h1>
+      <form action="/moods_button" method = "POST" align="center">
+        <p><input type = "submit" value = "Make Mood Playlists" style="background-color: white;color: black; border-radius: 15px;"/></p>
+      </form>
+    </div>
+
+    <div class="mt-1" align="center">
+      <h1>Split your liked songs into playlists based on their popularity</h1>
+      <form action="/popularity_button" method = "POST" align="center">
+        <p><input type = "submit" value = "Make Popularity Playlists" style="background-color: white;color: black; border-radius: 15px;"/></p>
+      </form>
+    </div>
+
+  </div>
+
+{% endif %}
+
+{% endblock %}

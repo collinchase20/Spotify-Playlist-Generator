@@ -1,0 +1,235 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if not user %}
+
+  <div class="container">
+    <div class="mt-1">
+      <h1>Split your liked songs into playlists based on moods</h1>
+    </div>
+    <p class="lead">You need to log in to see this page</p>
+
+    <a type="button" class="btn btn-default" href="/auth" style="border-color: black;">Login</a>
+  </div>
+
+{% else %}
+
+  <div class="container">
+
+    <div class="mt-1" align="center">
+      <h1>Here are the playlists generated. You can add any playlist to your Spotify account</h1>
+        <a href=generate><button class='btn btn-default' onclick="this.disabled = true" style="border-color: black;">Generate Other Types of Playlists</button></a>
+        </form>
+    </div>
+
+    <div class='containter' id="addingContainer">
+
+      <div class="column" align="center">
+        <h3> {{ header1 }} </h3>
+        <form>
+            <a href=# id="button1"><button class='btn btn-default' onclick="this.disabled = true" style="border-color: black;">Add Playlist to Library</button></a>
+        </form>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type=text/javascript>
+        $(function() {
+          $('a#button1').bind('click', function() {
+            $.getJSON('/addTracksButton1',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        </script>
+        <hr class="half-rule"/>
+        <div class="container vertical-scrollable" align="left" style="height: 500px; overflow-y: scroll; border: 1px solid black;">
+        {% for play in playlist1 %}
+        <div class='row' style="margin-top: 5%;">
+          <a href="{{ play.external_urls.spotify }}">
+            <div class='col-sm-8'>
+              <span>{{ play.name }} </span>
+            </div>
+            <div class='col-sm-4'>
+              {% if play.album.images %}
+              <img src="{{play.album.images[0].url}}" alt="{{play.name}}" class="img-playlist">
+              {% else %}
+              <img src="http://bit.ly/2nXRRfX" class="img-search">
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+
+
+
+
+      <div class="column" align="center">
+        <h3> {{ header2 }} </h3>
+        <form>
+            <a href=# id=button2><button class='btn btn-default' onclick="this.disabled = true" style="border-color: black;">Add Playlist to Library</button></a>
+        </form>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type=text/javascript>
+        $(function() {
+          $('a#button2').bind('click', function() {
+            $.getJSON('/addTracksButton2',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        </script>
+        <hr class="half-rule"/>
+        <div class="container vertical-scrollable" align="left" style="height: 500px; overflow-y: scroll; border: 1px solid black;">
+        {% for play in playlist2 %}
+        <div class='row' style="margin-top: 5%;">
+          <a href="{{ play.external_urls.spotify }}">
+            <div class='col-sm-8'>
+              <span>{{ play.name }} </span>
+            </div>
+            <div class='col-sm-4'>
+              {% if play.album.images %}
+              <img src="{{play.album.images[0].url}}" alt="{{play.name}}" class="img-playlist">
+              {% else %}
+              <img src="http://bit.ly/2nXRRfX" class="img-search">
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+
+
+
+      <div class="column" align="center">
+        <h3> {{ header3 }} </h3>
+        <form>
+            <a href=# id=button3><button class='btn btn-default' onclick="this.disabled = true" style="border-color: black;">Add Playlist to Library</button></a>
+        </form>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type=text/javascript>
+        $(function() {
+          $('a#button3').bind('click', function() {
+            $.getJSON('/addTracksButton3',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        </script>
+        <hr class="half-rule"/>
+        <div class="container vertical-scrollable" align="left" style="height: 500px; overflow-y: scroll; border: 1px solid black;">
+        {% for play in playlist3 %}
+        <div class='row' style="margin-top: 5%;">
+          <a href="{{ play.external_urls.spotify }}">
+            <div class='col-sm-8'>
+              <span>{{ play.name }} </span>
+            </div>
+            <div class='col-sm-4'>
+              {% if play.album.images %}
+              <img src="{{play.album.images[0].url}}" alt="{{play.name}}" class="img-playlist">
+              {% else %}
+              <img src="http://bit.ly/2nXRRfX" class="img-search">
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+
+
+
+
+      <div class="column" align="center">
+        <h3> {{ header4 }} </h3>
+        <form>
+            <a href=# id=button4><button class='btn btn-default' onclick="this.disabled = true" style="border-color: black;">Add Playlist to Library</button></a>
+        </form>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type=text/javascript>
+        $(function() {
+          $('a#button4').bind('click', function() {
+            $.getJSON('/addTracksButton4',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        </script>
+        <hr class="half-rule"/>
+        <div class="container vertical-scrollable" align="left" style="height: 500px; overflow-y: scroll; border: 1px solid black;">
+        {% for play in playlist4 %}
+        <div class='row' style="margin-top: 5%;">
+          <a href="{{ play.external_urls.spotify }}">
+            <div class='col-sm-8'>
+              <span>{{ play.name }} </span>
+            </div>
+            <div class='col-sm-4'>
+              {% if play.album.images %}
+              <img src="{{play.album.images[0].url}}" alt="{{play.name}}" class="img-playlist">
+              {% else %}
+              <img src="http://bit.ly/2nXRRfX" class="img-search">
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+          </div>
+      </div>
+
+
+
+      <div class="column" align="center">
+        <h3> {{ header5 }} </h3>
+        <form>
+            <a href=# id=button5><button class='btn btn-default' onclick="this.disabled = true" style="border-color: black;">Add Playlist to Library</button></a>
+        </form>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type=text/javascript>
+        $(function() {
+          $('a#button5').bind('click', function() {
+            $.getJSON('/addTracksButton5',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+        </script>
+        <hr class="half-rule"/>
+        <div class="container vertical-scrollable" align="left" style="height: 500px; overflow-y: scroll; border: 1px solid black;">
+          {% for play in playlist5 %}
+          <div class='row' style="margin-top: 5%;">
+            <a href="{{ play.external_urls.spotify }}">
+              <div class='col-sm-8'>
+                <span>{{ play.name }} </span>
+              </div>
+              <div class='col-sm-4'>
+                {% if play.album.images %}
+                <img src="{{play.album.images[0].url}}" alt="{{play.name}}" class="img-playlist">
+                {% else %}
+                <img src="http://bit.ly/2nXRRfX" class="img-search">
+                {% endif %}
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+{% endif %}
+
+{% endblock %}
